@@ -4,7 +4,7 @@
   const $$ = (selector) => [...document.querySelectorAll(selector)];
   const toast = document.querySelector("#toast");
   const moduleCode = document.querySelector("#ios-module-url");
-  const modulePath = "modules/locshift.sgmodule?v=2";
+  const modulePath = "modules/locshift.sgmodule?v=3";
   const fallbackModuleUrl = new URL(modulePath, document.baseURI).toString();
   if (moduleCode) moduleCode.textContent = fallbackModuleUrl;
 

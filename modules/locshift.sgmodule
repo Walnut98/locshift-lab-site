@@ -1,7 +1,7 @@
 #!name=LocShift 定位修改
 #!desc=基于原版 WLOC 核心，仅用于自有设备测试
 #!homepage=https://walnut98.github.io/locshift-lab-site/
-#!openUrl=https://walnut98.github.io/locshift-lab-site/
+#!openUrl=https://walnut98.github.io/locshift-lab-site/ios.html
 #!category=Tools
 #!arguments=经度:121.473701, 纬度:31.230416, 精度:25, 扰动半径:0, 日志级别:info
 #!arguments-desc=填写目标经纬度，修改后重新连接小火箭并刷新定位服务。
