@@ -4,14 +4,15 @@
   const $$ = (selector) => [...document.querySelectorAll(selector)];
   const toast = document.querySelector("#toast");
   const moduleCode = document.querySelector("#ios-module-url");
-  const fallbackModuleUrl = new URL("modules/locshift.sgmodule", document.baseURI).toString();
+  const modulePath = "modules/locshift.sgmodule?v=2";
+  const fallbackModuleUrl = new URL(modulePath, document.baseURI).toString();
   if (moduleCode) moduleCode.textContent = fallbackModuleUrl;
 
   fetch("api/lan-base", { cache: "no-store" })
     .then((response) => response.ok ? response.json() : null)
     .then((data) => {
       if (moduleCode && data && data.base) {
-        moduleCode.textContent = new URL("modules/locshift.sgmodule", data.base).toString();
+        moduleCode.textContent = new URL(modulePath, data.base).toString();
       }
     })
     .catch(() => {});
