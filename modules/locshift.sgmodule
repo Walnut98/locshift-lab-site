@@ -1,5 +1,5 @@
 #!name=LocShift 定位修改
-#!desc=原版 WLOC 核心 + QUIC 绕过修复 v4，仅用于自有设备测试
+#!desc=原版 WLOC 核心 + QUIC 绕过修复 v5，仅用于自有设备测试
 #!homepage=https://walnut98.github.io/locshift-lab-site/
 #!openUrl=https://walnut98.github.io/locshift-lab-site/ios.html
 #!category=Tools
@@ -10,6 +10,7 @@
 block-quic = all
 
 [Script]
+LocShift Probe = type=http-request, pattern="^http:\/\/locshift\.test\/check", requires-body=0, max-size=0, timeout=10, script-path=https://walnut98.github.io/locshift-lab-site/scripts/probe.js
 LocShift WLOC = type=http-response, pattern="^https?:\/\/(?:gs-loc(?:-cn)?\.apple\.com|gsp-ssl\.ls\.apple\.com|bluedot\.is\.autonavi\.com(?:\.gds\.alibabadns\.com)?)\/clls\/wloc", requires-body=1, binary-body-mode=1, max-size=0, timeout=30, script-path=https://walnut98.github.io/locshift-lab-site/scripts/wloc.js, argument=longitude={{{经度}}}&latitude={{{纬度}}}&accuracy={{{精度}}}&randomRadius={{{扰动半径}}}&logLevel={{{日志级别}}}
 LocShift Settings = type=http-request, pattern="^https?:\/\/gs-loc(-cn)?\.apple\.com\/wloc-settings\/save", requires-body=0, max-size=0, timeout=10, script-path=https://walnut98.github.io/locshift-lab-site/scripts/wloc-settings.js
 
