@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>LocShift · 手机教程</title>
+  <link rel="stylesheet" href="guide.css">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <a class="back" href="./">← 返回选点</a>
+      <span class="eyebrow">MOBILE GUIDE</span>
+      <h1>两套系统，<br><em>都只保留最少步骤</em></h1>
+      <p>网页只负责选点。iPhone 使用一个模块，Android 使用系统模拟位置功能。</p>
+    </header>
+
+    <div class="tabs" role="tablist" aria-label="选择手机系统">
+      <button type="button" role="tab" data-platform="ios" class="active">iPhone</button>
+      <button type="button" role="tab" data-platform="android">Android</button>
+    </div>
+
+    <section class="platform-panel active" data-platform-panel="ios">
+      <div class="summary"><b>需要做一次：</b>导入模块、信任证书。<br><b>以后每次：</b>只改模块里的经纬度。</div>
+      <article class="card">
+        <span class="step">01</span>
+        <div><h2>导入模块</h2><p>小火箭 →「模块」→ 右上角「＋」→ 粘贴下面的地址 →「下载」。如果正在连接，先暂时关闭小火箭首页总开关，导入成功后再打开。</p><code id="ios-module-url">…/modules/locshift.sgmodule</code><button type="button" class="copy" data-copy="ios-module-url">复制模块地址</button></div>
+      </article>
+      <article class="card">
+        <span class="step">02</span>
+        <div><h2>信任证书</h2><p>配置 → 当前配置右侧图标 →「HTTPS 解密」→ 打开解密 → 生成并安装 CA 证书。再到系统「证书信任设置」打开完全信任。</p><p class="hint">模块已经内置 MitM 域名并开启 HTTP/2，不需要手工填写域名列表。</p></div>
+      </article>
+      <article class="card">
+        <span class="step">03</span>
+        <div><h2>写入坐标</h2><p>回到「模块」→ 打开「LocShift 定位测试」→「编辑参数」→ 填写选点页复制的纬度、经度。断开再连接小火箭。</p></div>
+      </article>
+      <article class="card">
+        <span class="step">04</span>
+        <div><h2>刷新定位</h2><p>设置 → 隐私与安全性 → 定位服务，关闭 5～10 秒再打开。若仍没有变化，重启一次手机。</p></div>
+      </article>
+      <div class="warning">小火箭首页必须打开总开关，全局路由选择「配置」。首次导入模块和脚本时必须与电脑处于同一 Wi-Fi；脚本缓存后可切到蜂窝数据，清除缓存或重新导入模块时再打开电脑服务。</div>
+    </section>
+
+    <section class="platform-panel" data-platform-panel="android">
+      <div class="summary"><b>无需代理、证书或 Root。</b><br>首次选择模拟位置应用，以后只需粘贴坐标并启动。</div>
+      <article class="card">
+        <span class="step">01</span>
+        <div><h2>准备模拟位置应用</h2><p>从应用商店安装任意可靠的模拟定位应用。网页不绑定具体应用。</p></div>
+      </article>
+      <article class="card">
+        <span class="step">02</span>
+        <div><h2>开启开发者选项</h2><p>设置 → 关于手机 → 连续点击「版本号」约 7 次，直到提示已进入开发者模式。</p></div>
+      </article>
+      <article class="card">
+        <span class="step">03</span>
+        <div><h2>选择模拟位置应用</h2><p>设置 → 系统 → 开发者选项 →「选择模拟位置应用」→ 选中刚安装的应用。</p></div>
+      </article>
+      <article class="card">
+        <span class="step">04</span>
+        <div><h2>粘贴并启动</h2><p>在本站选点，点「复制坐标」，粘贴到模拟定位应用并启动。停止应用或重启手机即可恢复真实位置。</p></div>
+      </article>
+      <div class="warning">不同品牌的开发者选项位置略有差异，可搜索“手机品牌 + 开发者选项 + 模拟位置应用”。</div>
+    </section>
+
+    <section class="faq">
+      <h2>只检查这几项</h2>
+      <details><summary>iPhone 位置没有变化</summary><p>确认小火箭总开关已开、模块已启用、HTTPS 解密已开、证书完全信任；再断连一次小火箭并重启定位服务。室内比户外更容易看到网络定位结果。</p></details>
+      <details><summary>模块参数在哪里改</summary><p>小火箭「模块」中不要只点开关，要点击「LocShift 定位测试」进入详情，选择「编辑参数」。修改后保存，并重新连接小火箭。</p></details>
+      <details><summary>Android 找不到模拟位置应用</summary><p>部分品牌把该选项放在「开发者选项 → 调试」或「位置模拟」中。请确认已安装支持模拟定位的应用，并且已开启开发者选项。</p></details>
+      <details><summary>如何完全恢复</summary><p>iPhone 关闭模块或小火箭总开关，再关开定位服务。Android 停止模拟定位应用，或把「选择模拟位置应用」改为「无」。</p></details>
+    </section>
+
+    <footer>仅用于本人设备的功能测试。</footer>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="guide.js"></script>
+</body>
+</html>

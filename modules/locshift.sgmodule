@@ -1,0 +1,20 @@
+#!name=LocShift 定位测试
+#!desc=仅用于自有设备的定位功能测试
+#!homepage=https://walnut98.github.io/locshift-lab-site/
+#!openUrl=https://walnut98.github.io/locshift-lab-site/
+#!category=Tools
+#!arguments=纬度:31.230416, 经度:121.473701, 精度:25
+#!arguments-desc=直接填写目标坐标。修改后断开再连接小火箭，然后关闭再打开定位服务。
+
+[Script]
+LocShift Response = type=http-response, pattern="^https?:\/\/(?:gs-loc(?:-cn)?\.apple\.com|gsp-ssl\.ls\.apple\.com|bluedot\.is\.autonavi\.com(?:\.gds\.alibabadns\.com)?)\/clls\/wloc", requires-body=1, binary-body-mode=1, max-size=0, timeout=30, engine=webview, script-path=https://walnut98.github.io/locshift-lab-site/scripts/apple-response.js, argument=latitude={{{纬度}}}&longitude={{{经度}}}&accuracy={{{精度}}}
+
+[MITM]
+enable=true
+hostname = gs-loc.apple.com, gs-loc-cn.apple.com, gsp-ssl.ls.apple.com, bluedot.is.autonavi.com, bluedot.is.autonavi.com.gds.alibabadns.com
+h2 = true
+
+[Rule]
+IP-CIDR,10.0.0.0/8,DIRECT
+IP-CIDR,172.16.0.0/12,DIRECT
+IP-CIDR,192.168.0.0/16,DIRECT
