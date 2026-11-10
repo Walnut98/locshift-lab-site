@@ -1,10 +1,13 @@
 #!name=LocShift 定位修改
-#!desc=基于原版 WLOC 核心，仅用于自有设备测试
+#!desc=原版 WLOC 核心 + QUIC 绕过修复 v4，仅用于自有设备测试
 #!homepage=https://walnut98.github.io/locshift-lab-site/
 #!openUrl=https://walnut98.github.io/locshift-lab-site/ios.html
 #!category=Tools
 #!arguments=经度:121.473701, 纬度:31.230416, 精度:25, 扰动半径:0, 日志级别:info
 #!arguments-desc=填写目标经纬度，修改后重新连接小火箭并刷新定位服务。
+
+[General]
+block-quic = all
 
 [Script]
 LocShift WLOC = type=http-response, pattern="^https?:\/\/(?:gs-loc(?:-cn)?\.apple\.com|gsp-ssl\.ls\.apple\.com|bluedot\.is\.autonavi\.com(?:\.gds\.alibabadns\.com)?)\/clls\/wloc", requires-body=1, binary-body-mode=1, max-size=0, timeout=30, script-path=https://walnut98.github.io/locshift-lab-site/scripts/wloc.js, argument=longitude={{{经度}}}&latitude={{{纬度}}}&accuracy={{{精度}}}&randomRadius={{{扰动半径}}}&logLevel={{{日志级别}}}
